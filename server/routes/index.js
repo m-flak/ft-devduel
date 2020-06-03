@@ -5,6 +5,8 @@ import token from '../../token'
 
 import validation from './validation'
 
+import { getGitHubProfile } from '../lib/github'
+
 export default () => {
   let router = Router()
 
@@ -24,12 +26,7 @@ export default () => {
 
   /** GET /api/user/:username - Get user */
   router.get('/user/:username', validate(validation.user), (req, res) => {
-    console.log(req.params)
-    /*
-      TODO
-      Fetch data for user specified in path variable
-      parse/map data to appropriate structure and return as JSON object
-    */
+    getGitHubProfile(req.params.username).then(profile => res.json(profile))
   })
 
   /** GET /api/users? - Get users */
