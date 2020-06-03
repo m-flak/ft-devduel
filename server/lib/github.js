@@ -1,5 +1,6 @@
 import axios from 'axios'
 import token from '../../token'
+import APIError from './APIError'
 
 /* * * * * * * * * * * * PRIVATE METHODS * * * * * * * * * * * * * * * * * * */
 const getLanguages = repositories => repositories.map(r => r.language)
@@ -93,7 +94,9 @@ const getUserProfile = username =>
         followers: jsonProfile.followers,
         following: jsonProfile.following
     }))
-    .catch(err => console.log('Error getting profile!', err))
+    .catch(err => {
+        throw new APIError('Unable to retrieve username', err.response.status)
+    })
 
 const getUserRepositories = username =>
     axios.get(`https://api.github.com/users/${username}/repos`, {
@@ -102,7 +105,9 @@ const getUserRepositories = username =>
         }
     })
     .then(response => response.data)
-    .catch(err => console.log('Error getting repositories', err))
+    .catch(err => {
+        throw new APIError('Unable to retrieve repositories', err.response.status)
+    })
 
 const getUserRepositoryStats = repositories => ({
     'favorite-language': getFavoriteLanguage(repositories),
@@ -133,7 +138,6 @@ const makeProfile = repo => username => {
                 ...getUserRepositoryStats(repos)
             }
         })
-        .catch(err => console.log('Invalid user!', err))
 }
 
 /* * * * * * * * * * * * PUBLIC METHODS * * * * * * * * * * * * * * * * * * * */

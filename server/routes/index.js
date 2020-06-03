@@ -26,7 +26,11 @@ export default () => {
 
   /** GET /api/user/:username - Get user */
   router.get('/user/:username', validate(validation.user), (req, res) => {
-    getGitHubProfile(req.params.username).then(profile => res.json(profile))
+    const username = req.params.username
+
+    getGitHubProfile(username)
+      .then(profile => res.json(profile))
+      .catch(err => res.status(err.status).send(`${err.message}: ${username}`))
   })
 
   /** GET /api/users? - Get users */
