@@ -26,8 +26,11 @@ const getPerfectRepos = repositories =>
     repositories.filter(r => r.open_issues_count === 0).length
 
 // TITLES!!!
-const isForker = repositories =>
+//
+const _isForker = repositories =>
     repositories.filter(r => r.fork).length >= repositories.length / 2 ? 'Forker' : ''
+// Prevent users w/o repos from being given the 'Forker' title
+const isForker = repositories => repositories.length > 0 ? _isForker(repositories) : ''
 
 const isOneTrickPony = repositories => {
     const languages = getLanguages(repositories)
@@ -52,11 +55,15 @@ const isJackOfAllTrades = repositories => {
     return differentLanguages.length > 10 ? 'Jack of all Trades' : ''
 }
 
-const isStalker = profile =>
+const _isStalker = profile =>
     profile.following >= profile.followers * 2 ? 'Stalker' : ''
+// Prevent users following nobody from being given the 'Stalker' title
+const isStalker = profile => profile.following > 0 ? _isStalker(profile) : ''
 
-const isMrPopular = profile =>
+const _isMrPopular = profile =>
     profile.followers >= profile.following * 2 ? 'Mr. Popular' : ''
+// Prevent users with no followers from being given the 'Mr. Popular' title
+const isMrPopular = profile => profile.followers > 0 ? _isMrPopular(profile) : ''
 
 const isBarryBlock = repositories =>
     repositories.filter(r => r.watchers_count > 1).length >= 1 ? 'Barry Block' : ''
@@ -142,4 +149,5 @@ const makeProfile = repo => username => {
 
 /* * * * * * * * * * * * PUBLIC METHODS * * * * * * * * * * * * * * * * * * * */
 // getGitHubProfile(username) -> a Promise containing a Profile for the frontend
+// Throws an APIError on failure
 export const getGitHubProfile = makeProfile(getUserRepositories)
