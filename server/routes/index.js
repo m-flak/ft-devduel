@@ -35,12 +35,11 @@ export default () => {
 
   /** GET /api/users? - Get users */
   router.get('/users/', validate(validation.users), (req, res) => {
-    console.log(req.query)
-    /*
-      TODO
-      Fetch data for users specified in query
-      parse/map data to appropriate structure and return as a JSON array
-    */
+      const usernames = req.query.username
+
+      Promise.all(usernames.map(u => getGitHubProfile(u)))
+        .then(profiles => res.json(profiles))
+        .catch(err => res.status(err.status).send(`${err.message}: ${usernames}`))
   })
 
   return router
