@@ -45,11 +45,15 @@ $('form').submit(() => {
       Object.keys(stats).forEach(k => $(`.${k}`).text(stats[k]))
       $('.avatar').attr('src', data['avatar-url'])
 
+      // Remove nulls
+      $('.user-results').find('span').filter((i, e) => e.innerText === 'null')
+                                     .text('')
+
       $('.user-results').removeClass('hide') // Display '.user-results' element
     })
     .catch(err => {
       const errMsg = (msg) => {
-          let element = document.createElement("span")
+          let element = document.createElement('span')
           $(element).addClass('error')
           $(element).text(msg)
           return element

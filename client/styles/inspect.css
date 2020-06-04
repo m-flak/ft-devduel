@@ -22,6 +22,11 @@ span.username {
     font-weight: bold;
 }
 
+img.avatar {
+    transform: scale(0.92);
+    max-width: 400px;
+}
+
 .stats {
     display: flex;
     flex-direction: column;
@@ -40,6 +45,7 @@ span.username {
 
 .stat .label {
     justify-content: flex-end;
+    font-weight: bold;
 }
 
 .stat .value {
