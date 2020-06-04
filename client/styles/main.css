@@ -115,20 +115,22 @@ input:-ms-input-placeholder {
     text-align: center;
 }
 
+/****** Error State & Error styles ******/
+main.error-state {
+    background-color: #f3746b;
+}
 
+section.user-error {
+    border: solid 3px red;
+    background-color: #f33629;
+}
 
+span.error {
+    padding: 0.15em 0 0.15em 0;
+    font-weight: bold;
+    color: white;
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+span.error + span.error {
+    padding-top: 0;
+}
