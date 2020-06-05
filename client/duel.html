@@ -27,14 +27,11 @@
         <section class="form-container">
             <form>
                 <div class="input-container">
-                    <input name="username-left" type="text" placeholder="username">
-                    <input name="username-right" type="text" placeholder="username">
+                    <input name="username-left" type="text" placeholder="username" minlength="1" required>
+                    <input name="username-right" type="text" placeholder="username" minlength="1" required>
                 </div>
                 <button type="submit">duel</button>
             </form>
-            <section class="duel-error hide">
-                <span class="error">Error message here</span>
-            </section>
         </section>
         <section class="duel-container hide">
             <section class="user-results left">
@@ -79,6 +76,10 @@
                     </div>
                 </div>
             </section>
+            <div id="LeftVictor" class="win-loss" data-user="left">
+                <h1 class="winner hide">WINNER!</h1>
+                <h1 class="loser hide">LOSER!</h1>
+            </div>
             <section class="user-results right">
                 <span class="username">qbolt</span>
                 <span class="full-name">Quinton Bolt</span>
@@ -121,6 +122,13 @@
                     </div>
                 </div>
             </section>
+            <div id="RightVictor" class="win-loss" data-user="right">
+                <h1 class="winner hide">WINNER!</h1>
+                <h1 class="loser hide">LOSER!</h1>
+            </div>
+        </section>
+        <section class="duel-error hide">
+            <span class="error">Ooops! We've encountered a problem:</span>
         </section>
     </main>
 </div>

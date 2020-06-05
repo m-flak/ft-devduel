@@ -120,7 +120,7 @@ main.error-state {
     background-color: #f3746b;
 }
 
-section.user-error {
+section.user-error, section.duel-error {
     border: solid 3px red;
     background-color: #f33629;
 }

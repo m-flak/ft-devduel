@@ -38,7 +38,7 @@ span.username {
 .stats {
     display: flex;
     flex-direction: column;
-    width: 100%;
+    width: 75%;
 }
 
 .stats .stat {
@@ -59,4 +59,29 @@ span.username {
 .stat .value {
     justify-content: flex-end;
     white-space: nowrap;
+}
+
+.user-results {
+    flex-grow: 1;
+}
+
+.winner {
+    color: green;
+}
+
+.victory {
+    background-color: lightgreen;
+}
+
+.loser {
+    color: red;
+}
+
+.defeat {
+    background-color: lightpink;
+}
+
+.win-loss {
+    padding-right: 1em;
+    margin-right: 0.5em;
 }
