@@ -1,4 +1,8 @@
-# JavaScript Assessment - Dev Duel
+FastTrack'D - "Dev Duel" Assessment
+===================================
+
+This a full-stack project that I worked on utilizing Javascript.
+
 # Assessment Overview
 
 For this assessment, students are tasked with developing a small full-stack application that interfaces with [GitHub's API](https://developer.github.com/v3/) in order to aggregate, transform, and display a given user's profile and repository data.  
